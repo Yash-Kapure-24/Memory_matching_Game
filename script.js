@@ -1,10 +1,15 @@
 const gridContainer = document.querySelector(".grid-container");
+const scoreDisplay = document.querySelector(".score");
+const messageContainer = document.querySelector(".message");
+
 let cards = [];
-let firstCard, secondCard;
+let firstCard = null;
+let secondCard = null;
 let lockBoard = false;
 let score = 0;
+let matchedPairs = 0;
 
-document.querySelector(".score").textContent = score;
+scoreDisplay.textContent = score;
 
 fetch("./data/cards.json")
   .then((res) => res.json())
@@ -15,38 +20,35 @@ fetch("./data/cards.json")
   });
 
 function shuffleCards() {
-  let currentIndex = cards.length,
-    randomIndex,
-    temporaryValue;
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
-    temporaryValue = cards[currentIndex];
-    cards[currentIndex] = cards[randomIndex];
-    cards[randomIndex] = temporaryValue;
+  for (let i = cards.length - 1; i > 0; i--) {
+    let randomIndex = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[randomIndex]] = [cards[randomIndex], cards[i]];
   }
 }
 
 function generateCards() {
-  for (let card of cards) {
+  gridContainer.innerHTML = ""; 
+  matchedPairs = 0;
+  messageContainer.style.display = "none";
+  
+  cards.forEach((card) => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
-    cardElement.setAttribute("data-name", card.name);
+    cardElement.dataset.name = card.name;
     cardElement.innerHTML = `
       <div class="front">
-        <img class="front-image" src=${card.image} />
+        <img class="front-image" src="${card.image}" alt="Card image" />
       </div>
       <div class="back"></div>
     `;
-    gridContainer.appendChild(cardElement);
     cardElement.addEventListener("click", flipCard);
-  }
+    gridContainer.appendChild(cardElement);
+  });
 }
 
 function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
-
+  if (lockBoard || this === firstCard) return;
+  
   this.classList.add("flipped");
 
   if (!firstCard) {
@@ -56,22 +58,25 @@ function flipCard() {
 
   secondCard = this;
   score++;
-  document.querySelector(".score").textContent = score;
+  scoreDisplay.textContent = score;
   lockBoard = true;
-
   checkForMatch();
 }
 
 function checkForMatch() {
-  let isMatch = firstCard.dataset.name === secondCard.dataset.name;
-
+  const isMatch = firstCard.dataset.name === secondCard.dataset.name;
   isMatch ? disableCards() : unflipCards();
 }
 
 function disableCards() {
   firstCard.removeEventListener("click", flipCard);
   secondCard.removeEventListener("click", flipCard);
-
+  matchedPairs++;
+  
+  if (matchedPairs === cards.length / 2) {
+    showCongratulations();
+  }
+  
   resetBoard();
 }
 
@@ -89,11 +94,14 @@ function resetBoard() {
   lockBoard = false;
 }
 
-function restart() {
+function restartGame() {
   resetBoard();
   shuffleCards();
   score = 0;
-  document.querySelector(".score").textContent = score;
-  gridContainer.innerHTML = "";
+  scoreDisplay.textContent = score;
   generateCards();
+}
+
+function showCongratulations() {
+  messageContainer.style.display = "block";
 }
