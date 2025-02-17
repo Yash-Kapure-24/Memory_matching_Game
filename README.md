@@ -2,23 +2,23 @@
 
 A fun and interactive Memory Matching Game built using HTML, CSS, and JavaScript. Test your memory skills by matching pairs of cards in the shortest time possible!
 
-✨ Features
-✅ Simple and responsive UI
-✅ Timer to track your performance
-✅ Flip card animations
-✅ Randomized card positions for a unique experience every time
-✅ Restart option to play again
+✨ Features. <br>
+✅ Simple and responsive UI<br>
+✅ Timer to track your performance<br>
+✅ Flip card animations<br>
+✅ Randomized card positions for a unique experience every time<br>
+✅ Restart option to play again<br>
 
-🚀 How to Play
-Click on a card to reveal its content.
-Click on another card to find its matching pair.
-Match all pairs to win the game!
-Try to complete the game in the shortest time possible.
-🎯 Tech Stack
-HTML for structure
-CSS for styling
-JavaScript for game logic
-📌 Live Demo: [Add your GitHub Pages link here]
-📌 GitHub Repository: [Add your repo link here]
+🚀 How to Play<br><br>
+Click on a card to reveal its content.<br>
+Click on another card to find its matching pair.<br>
+Match all pairs to win the game!<br>
+Try to complete the game in the shortest time possible.<br><br>
+🎯 Tech Stack<br>
+HTML for structure<br>
+CSS for styling<br><br>
+JavaScript for game logic<br>
+📌 Live Demo: [Add your GitHub Pages link here]<br>
+📌 GitHub Repository: [Add your repo link here]<br><br>
 
 Feel free to fork, modify, and enhance the game! 😊
