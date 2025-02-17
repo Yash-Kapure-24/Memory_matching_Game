@@ -1,4 +1,4 @@
-🧠 Memory Matching Game 🎮
+<h1>🧠 Memory Matching Game 🎮</h1>
 
 A fun and interactive Memory Matching Game built using HTML, CSS, and JavaScript. Test your memory skills by matching pairs of cards in the shortest time possible!
 
