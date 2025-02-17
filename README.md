@@ -18,7 +18,6 @@ Try to complete the game in the shortest time possible.<br><br>
 HTML for structure<br>
 CSS for styling<br><br>
 JavaScript for game logic<br>
-📌 Live Demo: [Add your GitHub Pages link here]<br>
-📌 GitHub Repository: [Add your repo link here]<br><br>
+📌 Live Demo: (https://memory-matching-game-steel.vercel.app/)<br><br>
 
 Feel free to fork, modify, and enhance the game! 😊
